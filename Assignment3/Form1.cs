@@ -16,32 +16,41 @@ namespace Assignment3
 
         private void button1_Click(object sender, EventArgs e)
         {
-            label3.Visible = true;
-            label4.Visible = true;
-
-            double Weight, Height, Index;
-            Weight = double.Parse(textBox1.Text);
-            Height = double.Parse(textBox2.Text);
-
-            Index = Weight / (Height * Height) * 703;
-
-            string Status;
-            if (Index < 18.5) {
-                Status = "Underweight";
-            }
-            else if (Index > 25.0)
+            try
             {
-                Status = "Overweight";
+                label3.Visible = true;
+                label4.Visible = true;
+
+                double Weight, Height, Index;
+                Weight = double.Parse(textBox1.Text);
+                Height = double.Parse(textBox2.Text);
+
+                Index = Weight / (Height * Height) * 703;
+
+                string Status;
+                if (Index < 18.5)
+                {
+                    Status = "Underweight";
+                }
+                else if (Index > 25.0)
+                {
+                    Status = "Overweight";
+                }
+                else
+                {
+                    Status = "Optimal";
+                }
+
+
+                label3.Text = "BMI: " + (Math.Round(Index, 2)).ToString();
+                label4.Text = "Status: " + Status;
             }
-            else
+            catch
             {
-                Status = "Optimal";
+                label3.Visible = false;
+                label4.Visible = true;
+                label4.Text = "Wrong data entered!";
             }
-                
-
-            label3.Text = "BMI: " + (Math.Round(Index,2)).ToString();
-            label4.Text = "Status: " + Status;
-
             }
         }
     }
